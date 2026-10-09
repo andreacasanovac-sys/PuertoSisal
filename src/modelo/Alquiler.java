@@ -9,8 +9,8 @@ public class Alquiler {
     private Fecha anioFabricacion;
     private int mastiles;
     private int camarotes;
-
-
+    private int cantidadDias;
+    
 
     public Alquiler(String nombreCliente, int clienteID, Fecha fechaInicial, Fecha fechaFinal, char posicion, Fecha anioFabricacion) {
         this.nombreCliente = nombreCliente;
@@ -100,9 +100,17 @@ public class Alquiler {
         this.camarotes = camarotes;
     }
 
-    public double calcularAlquiler(Fecha dTotales, Barco pBarco){
-        double alquiler = dTotales.getCantidadDias() * pBarco.getSubtotal();
+    public double calcularAlquiler(Barco pBarco){
+        double alquiler = this.getcDias() * pBarco.getSubtotal();
         return alquiler;
     }
     
+    public void setCantidadDias(Fecha dTotales){
+        dTotales.setCantidadDias(this.getFechaInicial(), this.getFechaFinal());
+        cantidadDias = dTotales.getCantidadDias();
+    }
+
+    public int getcDias(){
+        return cantidadDias;
+    }
 }
